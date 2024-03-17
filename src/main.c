@@ -8,6 +8,7 @@
 #include "ADC_interface.h"
 #include "SPI_interface.h"
 #include "TIMER0_interface.h"
+#include "PWM_interface.h"
 
 #include "BitMath.h"
 
@@ -42,11 +43,22 @@ int main(void)
   /* Initialization seciton */
   DIO_voidInitPins();
   // LCD_4_bit_voidInit();
-  SET_GLOBAL_INTERRUPT();
-  TIMER0_voidInit(TIMER0_FREQ_DIV_BY_64, func);
-  TIMER0_voidSetDelayCTCmS(1000,64,16);
+  PWM_voidInitChannel0();
+  PWM_voidGenerateOnChannel0(95, PWM_FREQ_DIV_BY_64);
+  u8 duty = 0;
+
+  DIO_voidSetPinValue(DIO_PORTB,DIO_PIN6,DIO_PIN_HIGH);
+  
+
+  
   while (1)
   {
+
+    PWM_voidGenerateOnChannel0(duty, PWM_FREQ_DIV_BY_64);
+    _delay_ms(100);
+    duty += 10;
+    duty = duty % 100;
+
   }
 
   return 0;

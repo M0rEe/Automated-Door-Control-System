@@ -132,16 +132,6 @@ void TIMER0_voidInit(u8 copy_u8PrescalerVal, void (*copy_ptr)(void))
     TIMER0_ON_COMPARE_INTERRUPT_ENABLE();
     // setting CallBackFuntion
     TIMER0_voidSetCallBackOnCompareMatch(copy_ptr);
-
-#elif (TIMER0_MODE == TIMER0_PWM_PHASE_CORRET_MODE)
-
-    Set_Bit(TCCR0, WGM00);
-    Clr_Bit(TCCR0, WGM01);
-
-#elif (TIMER0_MODE == TIMER0_FAST_PWM_MODE)
-
-    Set_Bit(TCCR0, WGM00);
-    Set_Bit(TCCR0, WGM01);
 #else
 #error NON_DEFINED_TIMER0_MODE
 #endif
@@ -157,10 +147,10 @@ void TIMER0_voidInit(u8 copy_u8PrescalerVal, void (*copy_ptr)(void))
  */
 void TIMER0_voidSetDelayCTCmS(u16 copy_u16MsDelay, u16 copy_u8PreScaler, u8 copy_Fcpu)
 {
-//TODO
-    // OCR0 = TIMER0_CTC_OCR_VALUE; // based on 64 prescaler
-    // // thus tick time 4us
-    // Delay = copy_u16MsDelay;
+    // TODO
+    //  OCR0 = TIMER0_CTC_OCR_VALUE; // based on 64 prescaler
+    //  // thus tick time 4us
+    //  Delay = copy_u16MsDelay;
     u16 ticktime_us = 0;
 
     // Calculate tick time in microseconds based on prescaler
