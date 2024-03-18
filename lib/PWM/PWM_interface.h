@@ -10,19 +10,39 @@
 #define PWM_FREQ_DIV_BY_1024 5
 
 void PWM_voidInitChannel0(void);
+
 void PWM_voidGenerateOnChannel0(u8 copy_u8DutyCycle, u8 copy_u8PrescalerVal);
 
 /**
  * @return void
  * @brief Stops timer from working
  */
-void PWM_voidStopTimer(void);
+void PWM_voidStopTimer0(void);
 
 /**
  * @return void
  * @param copy_u8PrescalerVal prescale Value from Defines
  * @brief start timer with specific prescale
  */
-void PWM_voidStartTimer(u8 copy_u8PrescalerVal);
+void PWM_voidStartTimer0(u8 copy_u8PrescalerVal);
+
+//-------------------------------------//
+
+void PWM_voidInitChannel1A(void);
+
+void PWM_voidGenerateOnChannel1A(u16 copy_u16PWMFreqHZ, f32 copy_f32DutyCycle, u8 copy_u8PrescalerVal);
+/**
+ * @return void
+ * @brief Stops timer from working
+ */
+void PWM_voidStopTimer1A(void);
+
+/**
+ * @return void
+ * @param copy_u8PrescalerVal prescale Value from Defines
+ * @brief start timer with specific prescale
+ */
+void PWM_voidStartTimer1A(u8 copy_u8PrescalerVal);
+
 
 #endif //__PWM_INTERFACE_H__

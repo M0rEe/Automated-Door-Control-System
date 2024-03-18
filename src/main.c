@@ -9,7 +9,7 @@
 #include "SPI_interface.h"
 #include "TIMER0_interface.h"
 #include "PWM_interface.h"
-
+#include "HBRIDGE_interface.h"
 #include "BitMath.h"
 
 /* Keypad Matrix */
@@ -43,22 +43,23 @@ int main(void)
   /* Initialization seciton */
   DIO_voidInitPins();
   // LCD_4_bit_voidInit();
-  PWM_voidInitChannel0();
-  PWM_voidGenerateOnChannel0(95, PWM_FREQ_DIV_BY_64);
-  u8 duty = 0;
+  PWM_voidInitChannel1A();
+  // PWM_voidGenerateOnChannel1A(50, 5, PWM_FREQ_DIV_BY_64);
 
-  DIO_voidSetPinValue(DIO_PORTB,DIO_PIN6,DIO_PIN_HIGH);
-  
-
-  
   while (1)
   {
 
-    PWM_voidGenerateOnChannel0(duty, PWM_FREQ_DIV_BY_64);
-    _delay_ms(100);
-    duty += 10;
-    duty = duty % 100;
+    PWM_voidGenerateOnChannel1A(50, 5, PWM_FREQ_DIV_BY_64);
+    _delay_ms(1500);
+    PWM_voidStopTimer1A();
 
+    PWM_voidGenerateOnChannel1A(50, 7.5, PWM_FREQ_DIV_BY_64);
+    _delay_ms(1500);
+    PWM_voidStopTimer1A();
+
+    PWM_voidGenerateOnChannel1A(50, 10, PWM_FREQ_DIV_BY_64);
+    _delay_ms(1500);
+    PWM_voidStopTimer1A();                      
   }
 
   return 0;
